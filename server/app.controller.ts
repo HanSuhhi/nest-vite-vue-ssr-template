@@ -14,9 +14,10 @@ export class AppController {
   async renderApp(@Req() request: Request): Promise<string> {
     const url = request.originalUrl;
     const { html, render, manifest } = await this.appService.renderApp(url);
-    const { appHtml } = await render(url, manifest);
+    const { appHtml,  preloadLinks } = await render(url, manifest);
 
     return html
       .replace("<!--ssr-outlet-->", appHtml)
+      .replace("<!--preload-links-->", preloadLinks)
   }
 }

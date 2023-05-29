@@ -7,7 +7,6 @@ let viteDevServer: ViteDevServer;
 export async function getViteServer() {
   if (!viteDevServer) {
     viteDevServer = await createServer({
-      base: `/${process.env.PROJECT_NAME}/`,
       root: process.cwd(),
       logLevel: IS_TEST ? "error" : "info",
       server: {
